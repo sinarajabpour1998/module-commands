@@ -37,3 +37,6 @@ based on module name (until version 1.0.2).
 
 `module:component`     Create a new view component class for specific module
 
+`module:observer`      Create a new observer class for specific module
+
+`module:request`       Create a new form request class for specific module

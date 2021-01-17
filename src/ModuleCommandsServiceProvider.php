@@ -9,6 +9,7 @@ use SAR\ModuleCommands\Console\Commands\MakeModuleController;
 use SAR\ModuleCommands\Console\Commands\MakeModuleMigration;
 use SAR\ModuleCommands\Console\Commands\MakeModuleModel;
 use SAR\ModuleCommands\Console\Commands\MakeModuleObserver;
+use SAR\ModuleCommands\Console\Commands\MakeModuleRequest;
 use SAR\ModuleCommands\Console\Commands\MakeModuleSeeder;
 
 class ModuleCommandsServiceProvider extends ServiceProvider
@@ -38,7 +39,8 @@ class ModuleCommandsServiceProvider extends ServiceProvider
                 MakeModuleModel::class,
                 MakeModuleSeeder::class,
                 MakeModuleComponent::class,
-                MakeModuleObserver::class
+                MakeModuleObserver::class,
+                MakeModuleRequest::class
             ]);
         }
 
