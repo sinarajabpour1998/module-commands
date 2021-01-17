@@ -1,5 +1,5 @@
 {
-    "name": "SAR/module-commands",
+    "name": "sar/module-commands",
     "description": "A package to add module custom commands in laravel apps.",
     "keywords": [
         "laravel",
