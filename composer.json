@@ -1,0 +1,38 @@
+{
+    "name": "SAR/module-commands",
+    "description": "A package to add module custom commands in laravel apps.",
+    "keywords": [
+        "laravel",
+        "module",
+        "commands",
+        "laravel-module",
+        "laravel-module-commands",
+        "laravel8-package",
+        "PHP",
+        "laravel8"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/sinarajabpour1998/module-commands",
+    "authors": [
+        {
+            "name": "Sina Rajabpour",
+            "email": "sina.rajabpour@outlook.com"
+        }
+    ],
+    "require": {
+        "php": "7.1.*|7.2.*|7.3.*|7.4.*",
+        "laravel/framework": "5.8.*|6.*|7.*|8.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "SAR\\ModuleCommands\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SAR\\ModuleCommands\\ModuleCommandsServiceProvider"
+            ]
+        }
+    }
+}
