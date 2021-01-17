@@ -42,7 +42,11 @@ class MakeModuleMigration extends Command
         if(File::exists('modules/' . $module_name)) {
             $migration_name = $this->ask('Enter your migration name');
             $this->call('make:migration', ['name' => $migration_name]);
-            $command = "mv database/migrations/*_$migration_name" . ".php modules/" . $module_name . "/src/database/migrations/";
+            $migration_route = "modules/" . $module_name . "/src/database/migrations/";
+            if(!File::exists($migration_route)) {
+                File::makeDirectory($migration_route,0777,true);
+            }
+            $command = "mv database/migrations/*_$migration_name" . ".php $migration_route";
             exec($command);
         }else{
             $this->error('Module does not exist.create the module using module:make command.');

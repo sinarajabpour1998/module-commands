@@ -42,7 +42,11 @@ class MakeModuleSeeder extends Command
         if(File::exists('modules/' . $module_name)) {
             $seeder_name = $this->ask('Enter your seeder name');
             $this->call('make:seeder', ['name' => $seeder_name]);
-            $command = "mv database/seeders/$seeder_name" . ".php modules/" . $module_name . "/src/database/seeders/";
+            $seeder_route = "modules/" . $module_name . "/src/database/seeders/";
+            if(!File::exists($seeder_route)) {
+                File::makeDirectory($seeder_route,0777,true);
+            }
+            $command = "mv database/seeders/$seeder_name" . ".php $seeder_route";
             exec($command);
         }else{
             $this->error('Module does not exist.create the module using module:make command.');

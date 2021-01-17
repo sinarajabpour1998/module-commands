@@ -42,7 +42,11 @@ class MakeModuleModel extends Command
         if(File::exists('modules/' . $module_name)) {
             $model_name = $this->ask('Enter your model name');
             $this->call('make:model', ['name' => $model_name]);
-            $command = "mv app/Models/$model_name" . ".php modules/" . $module_name . "/src/Models/";
+            $model_route = "modules/" . $module_name . "/src/Models/";
+            if(!File::exists($model_route)) {
+                File::makeDirectory($model_route,0777,true);
+            }
+            $command = "mv app/Models/$model_name" . ".php $model_route";
             exec($command);
         }else{
             $this->error('Module does not exist.create the module using module:make command.');

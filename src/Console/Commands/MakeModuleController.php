@@ -42,7 +42,11 @@ class MakeModuleController extends Command
         if(File::exists('modules/' . $module_name)) {
             $controller_name = $this->ask('Enter your controller name');
             $this->call('make:controller', ['name' => $controller_name]);
-            $command = "mv app/Http/Controllers/$controller_name" . ".php modules/" . $module_name . "/src/Http/Controllers/";
+            $controller_route = "modules/" . $module_name . "/src/Http/Controllers/";
+            if(!File::exists($controller_route)) {
+                File::makeDirectory($controller_route,0777,true);
+            }
+            $command = "mv app/Http/Controllers/$controller_name" . ".php $controller_route";
             exec($command);
         }else{
             $this->error('Module does not exist.create the module using module:make command.');
