@@ -1,5 +1,5 @@
 # Module Commands
-Laravel module commands package, version 1.0.2
+Laravel module commands package, version 1.0.3
 
 ## Installiation
 Using composer : 
@@ -17,7 +17,7 @@ module section
 
 After creating new module, controller or model (etc...) , you must change 
 the namespace of the created file. this package can not set the namespaces
-based on module name (until version 1.0.2).
+based on module name (until version 1.0.3).
 
 ## Available Commands
 

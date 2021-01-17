@@ -40,14 +40,18 @@ class MakeModuleRequest extends Command
     {
         $module_name = $this->ask('Enter your module name');
         if(File::exists('modules/' . $module_name)) {
+            $request_route = "modules/" . $module_name . "/src/Http/Requests/";
             $request_name = $this->ask('Enter your request name');
             $this->call('make:request', ['name' => $request_name]);
-            $request_route = "modules/" . $module_name . "/src/Http/Requests/";
-            if(!File::exists($request_route)) {
-                File::makeDirectory($request_route,0777,true);
+            if (!File::exists($request_route . $request_name . '.php')){
+                if(!File::exists($request_route)) {
+                    File::makeDirectory($request_route,0777,true);
+                }
+                $command = "mv app/Http/Requests/$request_name" . ".php $request_route";
+                exec($command);
+            }else{
+                $this->error('Request already exists.');
             }
-            $command = "mv app/Http/Requests/$request_name" . ".php $request_route";
-            exec($command);
         }else{
             $this->error('Module does not exist.create the module using module:make command.');
         }

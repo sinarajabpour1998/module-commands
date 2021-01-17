@@ -40,14 +40,18 @@ class MakeModuleComponent extends Command
     {
         $module_name = $this->ask('Enter your module name');
         if(File::exists('modules/' . $module_name)) {
-            $component_name = $this->ask('Enter your component name');
-            $this->call('make:component', ['name' => $component_name]);
             $component_route = 'modules/' . $module_name . '/src/views/components/';
-            if(!File::exists($component_route)) {
-                File::makeDirectory($component_route,0777,true);
+            $component_name = $this->ask('Enter your component name');
+            if (!File::exists($component_route . $component_name . '.blade.php')){
+                $this->call('make:component', ['name' => $component_name]);
+                if(!File::exists($component_route)) {
+                    File::makeDirectory($component_route,0777,true);
+                }
+                $command = "mv resources/views/components/$component_name" . ".blade.php $component_route";
+                exec($command);
+            }else{
+                $this->error('Component already exists.');
             }
-            $command = "mv resources/views/components/$component_name" . ".blade.php $component_route";
-            exec($command);
         }else{
             $this->error('Module does not exist.create the module using module:make command.');
         }

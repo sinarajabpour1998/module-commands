@@ -40,14 +40,18 @@ class MakeModuleObserver extends Command
     {
         $module_name = $this->ask('Enter your module name');
         if(File::exists('modules/' . $module_name)) {
-            $observer_name = $this->ask('Enter your observer name');
-            $this->call('make:observer', ['name' => $observer_name]);
             $observer_route = 'modules/' . $module_name . '/src/Observers/';
-            if(!File::exists($observer_route)) {
-                File::makeDirectory($observer_route,0777,true);
+            $observer_name = $this->ask('Enter your observer name');
+            if (!File::exists($observer_route . $observer_name . '.php')){
+                $this->call('make:observer', ['name' => $observer_name]);
+                if(!File::exists($observer_route)) {
+                    File::makeDirectory($observer_route,0777,true);
+                }
+                $command = "mv app/Observers/$observer_name" . ".php $observer_route";
+                exec($command);
+            }else{
+                $this->error('Observer already exists.');
             }
-            $command = "mv app/Observers/$observer_name" . ".php $observer_route";
-            exec($command);
         }else{
             $this->error('Module does not exist.create the module using module:make command.');
         }

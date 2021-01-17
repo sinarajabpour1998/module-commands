@@ -30,7 +30,6 @@ class MakeModuleMigration extends Command
     {
         parent::__construct();
     }
-
     /**
      * Execute the console command.
      *
@@ -40,14 +39,18 @@ class MakeModuleMigration extends Command
     {
         $module_name = $this->ask('Enter your module name');
         if(File::exists('modules/' . $module_name)) {
-            $migration_name = $this->ask('Enter your migration name');
-            $this->call('make:migration', ['name' => $migration_name]);
             $migration_route = "modules/" . $module_name . "/src/database/migrations/";
-            if(!File::exists($migration_route)) {
-                File::makeDirectory($migration_route,0777,true);
+            $migration_name = $this->ask('Enter your migration name');
+            if (!File::exists($migration_route . '*_' . $migration_name . '.php')){
+                $this->call('make:migration', ['name' => $migration_name]);
+                if(!File::exists($migration_route)) {
+                    File::makeDirectory($migration_route,0777,true);
+                }
+                $command = "mv database/migrations/*_$migration_name" . ".php $migration_route";
+                exec($command);
+            }else{
+                $this->error('Migration already exists.');
             }
-            $command = "mv database/migrations/*_$migration_name" . ".php $migration_route";
-            exec($command);
         }else{
             $this->error('Module does not exist.create the module using module:make command.');
         }
