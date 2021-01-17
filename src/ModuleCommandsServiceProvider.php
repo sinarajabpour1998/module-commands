@@ -4,9 +4,11 @@ namespace SAR\ModuleCommands;
 
 use Illuminate\Support\ServiceProvider;
 use SAR\ModuleCommands\Console\Commands\MakeModule;
+use SAR\ModuleCommands\Console\Commands\MakeModuleComponent;
 use SAR\ModuleCommands\Console\Commands\MakeModuleController;
 use SAR\ModuleCommands\Console\Commands\MakeModuleMigration;
 use SAR\ModuleCommands\Console\Commands\MakeModuleModel;
+use SAR\ModuleCommands\Console\Commands\MakeModuleObserver;
 use SAR\ModuleCommands\Console\Commands\MakeModuleSeeder;
 
 class ModuleCommandsServiceProvider extends ServiceProvider
@@ -34,7 +36,9 @@ class ModuleCommandsServiceProvider extends ServiceProvider
                 MakeModuleController::class,
                 MakeModuleMigration::class,
                 MakeModuleModel::class,
-                MakeModuleSeeder::class
+                MakeModuleSeeder::class,
+                MakeModuleComponent::class,
+                MakeModuleObserver::class
             ]);
         }
 

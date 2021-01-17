@@ -44,6 +44,7 @@ class MakeModule extends Command
             $directories = array(
                 $name,
                 $name . '/src/',
+                $name . '/src/Observers',
                 $name . '/src/assets',
                 $name . '/src/assets/js',
                 $name . '/src/assets/sass',
