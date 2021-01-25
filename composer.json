@@ -1,13 +1,16 @@
 {
-    "name": "sar/module-commands",
-    "description": "A package to add module custom commands in laravel apps.",
+    "name": "dizatech/pacman",
+    "description": "A simple package manager for laravel apps.",
     "keywords": [
         "laravel",
         "module",
+        "package",
+        "package-manager",
         "commands",
         "laravel-module",
         "laravel-module-commands",
         "laravel8-package",
+        "laravel8-package-manager",
         "PHP",
         "laravel8"
     ],
@@ -25,13 +28,13 @@
     },
     "autoload": {
         "psr-4": {
-            "SAR\\ModuleCommands\\": "src/"
+            "Dizatech\\Pacman\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "SAR\\ModuleCommands\\ModuleCommandsServiceProvider"
+                "Dizatech\\Pacman\\PacmanServiceProvider"
             ]
         }
     }
